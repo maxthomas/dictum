@@ -1,0 +1,240 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.maxthomas</groupId>
+  <artifactId>dictum</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+
+  <name>dictum</name>
+  <description>Java based NLP schema with functional style</description>
+  <url>https://github.com/maxthomas/dictum</url>
+
+  <prerequisites>
+    <maven>3.0.4</maven>
+  </prerequisites>
+
+  <scm>
+    <connection>scm:git:git@github.com:maxthomas/dictum.git</connection>
+    <developerConnection>scm:git:git@github.com:maxthomas/dictum.git</developerConnection>
+    <url>https://github.com/maxthomas/dictum</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <email>max@maxthomas.io</email>
+      <name>Max Thomas</name>
+      <url>https://github.com/maxthomas</url>
+      <id>maxthomas</id>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <javac.version.src>1.8</javac.version.src>
+    <javac.version.target>1.8</javac.version.target>
+    <log4j.version>2.5</log4j.version>
+    <jackson.version>2.7.3</jackson.version>
+
+    <version.plugin.javadoc>2.10.3</version.plugin.javadoc>
+    <version.plugin.source>3.0.0</version.plugin.source>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${javac.version.src}</source>
+          <target>${javac.version.target}</target>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <optimize>true</optimize>
+        </configuration>
+        <version>3.5.1</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>19.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.20</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.inferred</groupId>
+      <artifactId>freebuilder</artifactId>
+      <version>1.7</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+      <version>4.12</version>
+    </dependency>
+    <dependency>
+      <groupId>com.pholser</groupId>
+      <artifactId>junit-quickcheck-core</artifactId>
+      <version>0.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.quicktheories</groupId>
+      <artifactId>quicktheories</artifactId>
+      <version>0.12</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <!-- Skip javadoc generation by using this profile. -->
+      <id>dev</id>
+      <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${version.plugin.javadoc}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <quiet>true</quiet>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+                      <X-Compile-Source-JDK>${javac.src.version}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${javac.target.version}</X-Compile-Target-JDK>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${version.plugin.source}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                      <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                    </manifest>
+                    <manifestEntries>
+                      <Implementation-Build-Date>${maven.build.timestamp}</Implementation-Build-Date>
+                      <X-Compile-Source-JDK>${javac.version.src}</X-Compile-Source-JDK>
+                      <X-Compile-Target-JDK>${javac.version.target}</X-Compile-Target-JDK>
+                    </manifestEntries>
+                  </archive>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+</project>
