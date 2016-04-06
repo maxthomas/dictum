@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class, extending {@link UUIDableFlatMetadata}, that represents
@@ -21,6 +23,9 @@ import org.inferred.freebuilder.FreeBuilder;
  */
 @FreeBuilder
 public abstract class Tokenization extends UUIDableFlatMetadata {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Tokenization.class);
+
   Tokenization() {
   }
 
@@ -54,7 +59,9 @@ public abstract class Tokenization extends UUIDableFlatMetadata {
       Map<Integer, Token> idxToTM = ptkz.getIndexToTokenMap();
       Iterator<Entry<Integer, Token>> iter = idxToTM.entrySet().iterator();
       for (int i = 0; i < idxToTM.size(); i++) {
-        Integer idx = iter.next().getKey();
+        Map.Entry<Integer, Token> e = iter.next();
+        LOGGER.debug("Got map entry: K: {} / V: {}", e.getKey(), e.getValue().toString());
+        Integer idx = e.getKey();
         if (idx != i)
           throw new IllegalArgumentException("Token should have index " + i + ", but the index was " + idx);
       }
@@ -111,12 +118,10 @@ public abstract class Tokenization extends UUIDableFlatMetadata {
         });
         // check end idx is a proper token idx
         c.getEnd().ifPresent(idx -> {
-          if (!tokIdxS.contains(idx))
-            throw new IllegalArgumentException("Constituent start references token index: " + idx
+          if (!tokIdxS.contains(idx - 1))
+            throw new IllegalArgumentException("Constituent end references token index: " + idx
                 + ", but this token index does not exist in the tokenization.");
         });
-
-
       });
     }
   }
