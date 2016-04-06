@@ -89,7 +89,8 @@ public abstract class Tokenization extends UUIDableFlatMetadata {
           // stream of Dependencies
          .forEach(dp -> {
            dp.getGovernorIndex().ifPresent(i -> {
-             if (!idxs.contains(i))
+             // currently i can be -1, which has special meaning: no gov found
+             if (i >= 0 && !idxs.contains(i))
                throw new IllegalArgumentException("Governor references token indexed at: " + i
                    + ", but there is no token with that index.");
            });
