@@ -1,3 +1,7 @@
+[![Circle CI](https://circleci.com/gh/maxthomas/dictum.svg?style=svg)](https://circleci.com/gh/maxthomas/dictum)
+![Maven Badges](https://maven-badges.herokuapp.com/maven-central/io.maxthomas/dictum/badge.svg)
+[![javadoc.io](https://javadocio-badges.herokuapp.com/io.maxthomas/dictum/badge.svg)](http://www.javadoc.io/doc/io.maxthomas/dictum/)
+
 Current
 [Break version](https://github.com/ptaoussanis/encore/blob/master/BREAK-VERSIONING.md):
 
@@ -5,7 +9,7 @@ Current
 <dependency>
   <groupId>io.maxthomas</groupId>
   <artifactId>dictum</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
