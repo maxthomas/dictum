@@ -4,9 +4,6 @@
  */
 package io.maxthomas.dictum;
 
-import java.util.Map;
-import java.util.Optional;
-
 import org.inferred.freebuilder.FreeBuilder;
 
 /**
@@ -14,9 +11,7 @@ import org.inferred.freebuilder.FreeBuilder;
  */
 @FreeBuilder
 public abstract class TaggedToken extends Token implements ConfidenceScorable {
-  public abstract Optional<Map.Entry<String, Confidence>> getBestTagConfidenceScore();
-
-  public abstract Map<String, Confidence> getTagToConfidenceMap();
+  public abstract String getTag();
 
   public static class Builder extends TaggedToken_Builder {
     public Builder() {
