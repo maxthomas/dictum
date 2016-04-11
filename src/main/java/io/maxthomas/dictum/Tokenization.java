@@ -16,13 +16,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class, extending {@link UUIDableFlatMetadata}, that represents
+ * Class, extending {@link FlatMetadataWithUUID}, that represents
  * a tokenization of some textual content. Offers methods to get
  * collections of {@link Parse}, {@link DependencyParse},
  * {@link TaggedTokenGroup}, and {@link SpanLink} objects.
  */
 @FreeBuilder
-public abstract class Tokenization extends UUIDableFlatMetadata {
+public abstract class Tokenization implements FlatMetadataWithUUID {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Tokenization.class);
 

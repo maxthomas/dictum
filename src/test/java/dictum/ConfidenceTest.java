@@ -9,7 +9,7 @@ import static org.quicktheories.quicktheories.generators.SourceDSL.doubles;
 
 import org.junit.Test;
 
-import io.maxthomas.dictum.Confidence;
+import io.maxthomas.dictum.primitives.Confidence;
 
 /**
  *

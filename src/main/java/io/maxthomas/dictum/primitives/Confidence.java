@@ -2,9 +2,11 @@
  * Copyright 2016 Max Thomas. All rights reserved.
  * See LICENSE in the project root directory.
  */
-package io.maxthomas.dictum;
+package io.maxthomas.dictum.primitives;
 
 import org.inferred.freebuilder.FreeBuilder;
+
+import io.maxthomas.dictum.rules.Rules;
 
 /**
  * Representation of a confidence score.
@@ -15,7 +17,6 @@ public abstract class Confidence {
 
   public static class Builder extends Confidence_Builder {
     public Builder() {
-
     }
 
     @Override

@@ -12,6 +12,8 @@ import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.rules.Rules;
+
 /**
  * Flattened interface, created for representing pointers to groups of tokens.
  * Extends {@link TextSpannable}. The following validation checks are performed:

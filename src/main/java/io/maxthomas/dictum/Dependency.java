@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.rules.Rules;
+
 /**
  * Class that represents a Dependency, part of a {@link DependencyParse}.
  */

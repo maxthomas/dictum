@@ -12,7 +12,7 @@ import org.inferred.freebuilder.FreeBuilder;
  *
  */
 @FreeBuilder
-public abstract class ArgumentProperty extends FlatMetadata {
+public abstract class ArgumentProperty implements FlatMetadata {
 
   ArgumentProperty() {
   }

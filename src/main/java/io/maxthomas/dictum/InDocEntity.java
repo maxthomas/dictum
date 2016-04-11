@@ -5,10 +5,11 @@
 package io.maxthomas.dictum;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
+
+import com.google.common.collect.ImmutableSet;
 
 
 /**
@@ -19,7 +20,7 @@ public abstract class InDocEntity implements UUIDable, ConfidenceScorable {
   InDocEntity() {
   }
 
-  public abstract Set<UUID> getMentionUUIDs();
+  public abstract ImmutableSet<UUID> getMentionUUIDs();
 
   public abstract Optional<String> getType();
 

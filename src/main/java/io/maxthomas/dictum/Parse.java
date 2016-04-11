@@ -8,20 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.maxthomas.dictum.primitives.IntGreaterThanZero;
+import io.maxthomas.dictum.primitives.UnixTimestamp;
+
 /**
- * Class, extending {@link UUIDableFlatMetadata}, that represents a collection
+ * Class, extending {@link FlatMetadataWithUUID}, that represents a collection
  * of {@link Constituent} objects, as well as a UUID and metadata.
  * <br><br>
  * Each {@link Constituent#getChildList()} is also checked to ensure that
  * each child pointer is present in this annotation.
  */
 @FreeBuilder
-public abstract class Parse extends UUIDableFlatMetadata {
+public abstract class Parse implements FlatMetadataWithUUID {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Parse.class);
 
@@ -32,7 +36,10 @@ public abstract class Parse extends UUIDableFlatMetadata {
 
   public static class Builder extends Parse_Builder {
     public Builder() {
-
+      // defaults: UUID, kbest = 1, ts = current system time.
+      super.setUUID(UUID.randomUUID());
+      super.setKBest(IntGreaterThanZero.create(1));
+      super.setTimestamp(UnixTimestamp.now());
     }
 
     @Override

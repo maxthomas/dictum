@@ -16,19 +16,22 @@ import org.inferred.freebuilder.FreeBuilder;
 
 import com.google.common.collect.ImmutableSet;
 
+import io.maxthomas.dictum.primitives.IntGreaterThanZero;
+import io.maxthomas.dictum.primitives.UnixTimestamp;
+
 /**
  * A powerful alternative to Concrete communication objects,
  * adding utility functionality and validation not otherwise present.
  */
 @FreeBuilder
-public abstract class Communication extends UUIDableFlatMetadata {
+public abstract class Communication implements FlatMetadataWithUUID {
 
   public abstract String getId();
   public abstract String getType();
   public abstract String getText();
 
-  public abstract Optional<Long> getStartTime();
-  public abstract Optional<Long> getEndTime();
+  public abstract Optional<UnixTimestamp> getStartTime();
+  public abstract Optional<UnixTimestamp> getEndTime();
 
   public abstract List<CommunicationTagging> getTags();
   public abstract Map<String, String> getKVs();
@@ -46,21 +49,10 @@ public abstract class Communication extends UUIDableFlatMetadata {
 
   public static class Builder extends Communication_Builder {
     public Builder() {
-      // defaults: UUID, kbest = 1.
+      // defaults: UUID, kbest = 1, ts = current system time.
       super.setUUID(UUID.randomUUID());
-      super.setKBest(1);
-    }
-
-    @Override
-    public Builder setStartTime(long ts) {
-      // if the timestamp is 10x
-      // the current unix time, it is almost certainly incorrect
-      // (failure to convert ms->s)
-      long tsX10 = System.currentTimeMillis() / 100;
-      if (ts > tsX10)
-        throw new IllegalArgumentException("startTime is > 10x the current unix time.");
-      else
-        return super.setStartTime(ts);
+      super.setKBest(IntGreaterThanZero.create(1));
+      super.setTimestamp(UnixTimestamp.now());
     }
 
     @Override

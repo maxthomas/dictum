@@ -6,6 +6,8 @@ package io.maxthomas.dictum;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.rules.Rules;
+
 /**
  * A flat version of a text span, with a beginning and end.
  * Additionally, the following validation checks are performed:

@@ -6,6 +6,8 @@ package io.maxthomas.dictum;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.rules.Rules;
+
 /**
  * Interface representing an object that has a zero-based index field.
  * Validation code is run to ensure this is true.

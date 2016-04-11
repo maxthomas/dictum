@@ -2,7 +2,7 @@
  * Copyright 2016 Max Thomas. All rights reserved.
  * See LICENSE in the project root directory.
  */
-package io.maxthomas.dictum;
+package io.maxthomas.dictum.rules;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,5 +42,9 @@ public class Rules {
 
   public static final Predicate<Integer> isGT(int comparedTo) {
     return x -> x > comparedTo;
+  }
+
+  public static final Predicate<Long> isReasonableUnixTimestamp() {
+    return k -> k < System.currentTimeMillis() / 100;
   }
 }

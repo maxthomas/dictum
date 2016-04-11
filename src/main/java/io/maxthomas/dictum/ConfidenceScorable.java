@@ -6,6 +6,8 @@ package io.maxthomas.dictum;
 
 import java.util.Optional;
 
+import io.maxthomas.dictum.primitives.Confidence;
+
 /**
  * Interface for objects that may produce a {@link Confidence}.
  */

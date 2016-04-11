@@ -10,12 +10,15 @@ import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.primitives.IntGreaterThanZero;
+import io.maxthomas.dictum.primitives.UnixTimestamp;
+
 /**
  * Class that represents a group of {@link InDocEntityMention}
- * objects. Extends {@link UUIDableFlatMetadata}.
+ * objects. Extends {@link FlatMetadataWithUUID}.
  */
 @FreeBuilder
-public abstract class InDocEntityMentionGroup extends UUIDableFlatMetadata {
+public abstract class InDocEntityMentionGroup implements FlatMetadataWithUUID {
   InDocEntityMentionGroup() {
   }
 
@@ -23,8 +26,10 @@ public abstract class InDocEntityMentionGroup extends UUIDableFlatMetadata {
 
   public static class Builder extends InDocEntityMentionGroup_Builder {
     public Builder() {
-      // defaults: UUID.
+      // defaults: UUID, kbest = 1, ts = current system time.
       super.setUUID(UUID.randomUUID());
+      super.setKBest(IntGreaterThanZero.create(1));
+      super.setTimestamp(UnixTimestamp.now());
     }
 
     @Override
