@@ -15,7 +15,7 @@ import org.inferred.freebuilder.FreeBuilder;
  * @see ZeroBasedIndexable
  */
 @FreeBuilder
-public abstract class Token extends ZeroBasedIndexable implements TextSpannable {
+public abstract class Token implements TextSpannable, ZeroBasedIndexable {
   Token() { }
 
   public abstract Optional<String> getTokenText();

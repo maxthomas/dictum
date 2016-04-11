@@ -9,31 +9,31 @@ import org.inferred.freebuilder.FreeBuilder;
 import io.maxthomas.dictum.rules.Rules;
 
 /**
- * Class representing an <code>int</code> that is greater than <code>0</code>.
+ * Class representing an <code>int</code> that is greater than or equal to <code>0</code>.
  */
 @FreeBuilder
-public abstract class IntGreaterThanZero {
-  IntGreaterThanZero() {
+public abstract class IntZeroOrGreater {
+  IntZeroOrGreater() {
   }
 
   public abstract int getVal();
 
   /**
    * @param i the <code>int</code> to wrap
-   * @return an {@link IntGreaterThanZero}
+   * @return an {@link IntZeroOrGreater}
    */
-  public static IntGreaterThanZero create (int i) {
+  public static IntZeroOrGreater create (int i) {
     return new Builder().setVal(i).build();
   }
 
-  public static class Builder extends IntGreaterThanZero_Builder {
+  public static class Builder extends IntZeroOrGreater_Builder {
     public Builder() {
     }
 
     @Override
     public Builder setVal(int i) {
-      if (Rules.isGTZero().negate().test(i))
-        throw new IllegalArgumentException("int must be > 0");
+      if (Rules.isGTOrEqualToZero().negate().test(i))
+        throw new IllegalArgumentException("int must be >= 0");
       return super.setVal(i);
     }
   }
