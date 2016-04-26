@@ -5,7 +5,7 @@
 Current
 [Break version](https://github.com/ptaoussanis/encore/blob/master/BREAK-VERSIONING.md):
 
-``` shell
+```xml
 <dependency>
   <groupId>io.maxthomas</groupId>
   <artifactId>dictum</artifactId>
