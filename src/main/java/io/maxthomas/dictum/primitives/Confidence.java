@@ -15,6 +15,17 @@ import io.maxthomas.dictum.rules.Rules;
 public abstract class Confidence {
   public abstract double getScore();
 
+  /**
+   * @param conf a <code>double</code>
+   * @return a {@link Confidence} wrapping the parameter
+   * @throws IllegalArgumentException if parameter is out of range [0.0, 1.0]
+   */
+  public static Confidence fromDouble(double conf) {
+    return new Builder()
+        .setScore(conf)
+        .build();
+  }
+
   public static class Builder extends Confidence_Builder {
     public Builder() {
     }

@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import org.inferred.freebuilder.FreeBuilder;
 
+import io.maxthomas.dictum.lid.ValidISO3Languages;
+import io.maxthomas.dictum.primitives.Confidence;
 import io.maxthomas.dictum.primitives.IntGreaterThanZero;
 import io.maxthomas.dictum.primitives.UnixTimestamp;
 
@@ -18,7 +20,7 @@ import io.maxthomas.dictum.primitives.UnixTimestamp;
 @FreeBuilder
 public abstract class LanguageID implements FlatMetadataWithUUID {
 
-  public abstract Map<String, Double> getLanguageToProbMap();
+  public abstract Map<String, Confidence> getLanguageToProbMap();
 
   LanguageID() {
   }
@@ -29,6 +31,13 @@ public abstract class LanguageID implements FlatMetadataWithUUID {
       super.setUUID(UUID.randomUUID());
       super.setKBest(IntGreaterThanZero.create(1));
       super.setTimestamp(UnixTimestamp.now());
+    }
+
+    @Override
+    public Builder putLanguageToProbMap(String abbr, Confidence val) {
+      if (!ValidISO3Languages.isValidISO3Abbreviation(abbr))
+        throw new IllegalArgumentException("Invalid ISO3 code: " + abbr);
+      return super.putLanguageToProbMap(abbr, val);
     }
   }
 }
