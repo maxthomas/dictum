@@ -4,7 +4,7 @@
 
   <groupId>io.maxthomas</groupId>
   <artifactId>dictum</artifactId>
-  <version>0.4.0</version>
+  <version>0.5.0</version>
   <packaging>jar</packaging>
 
   <name>dictum</name>
@@ -45,7 +45,7 @@
     <javac.version.src>1.8</javac.version.src>
     <javac.version.target>1.8</javac.version.target>
     <log4j.version>2.5</log4j.version>
-    <jackson.version>2.7.3</jackson.version>
+    <jackson.version>2.7.4</jackson.version>
 
     <version.plugin.javadoc>2.10.3</version.plugin.javadoc>
     <version.plugin.source>3.0.0</version.plugin.source>
@@ -88,7 +88,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.20</version>
+      <version>1.7.21</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -109,7 +109,7 @@
     <dependency>
       <groupId>org.inferred</groupId>
       <artifactId>freebuilder</artifactId>
-      <version>1.7</version>
+      <version>1.10.1</version>
       <optional>true</optional>
     </dependency>
 
@@ -129,6 +129,7 @@
       <groupId>org.quicktheories</groupId>
       <artifactId>quicktheories</artifactId>
       <version>0.12</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>

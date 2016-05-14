@@ -9,7 +9,7 @@ Current
 <dependency>
   <groupId>io.maxthomas</groupId>
   <artifactId>dictum</artifactId>
-  <version>0.2.0</version>
+  <version>0.5.0</version>
 </dependency>
 ```
 
