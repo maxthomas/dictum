@@ -1,6 +1,7 @@
 [![Circle CI](https://circleci.com/gh/maxthomas/dictum.svg?style=svg)](https://circleci.com/gh/maxthomas/dictum)
 ![Maven Badges](https://maven-badges.herokuapp.com/maven-central/io.maxthomas/dictum/badge.svg)
 [![javadoc.io](https://javadocio-badges.herokuapp.com/io.maxthomas/dictum/badge.svg)](http://www.javadoc.io/doc/io.maxthomas/dictum/)
+[![codecov](https://codecov.io/gh/maxthomas/dictum/branch/master/graph/badge.svg)](https://codecov.io/gh/maxthomas/dictum)
 
 Current
 [Break version](https://github.com/ptaoussanis/encore/blob/master/BREAK-VERSIONING.md):
