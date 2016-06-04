@@ -4,7 +4,6 @@ machine:
 
 test:
   post:
-    - pip install --user codecov
-    - codecov || echo "Codecov did not collect coverage reports"
+    - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
